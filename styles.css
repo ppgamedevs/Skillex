@@ -264,16 +264,16 @@ body {
 
 .game-image {
   position: relative;
-  height: 200px;
+  height: 280px;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .game-image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.75));
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.7));
   z-index: 1;
 }
 
