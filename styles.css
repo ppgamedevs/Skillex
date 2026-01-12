@@ -641,10 +641,17 @@ body {
 }
 
 .form-message--success {
-  background: rgba(124, 242, 198, 0.2);
-  border: 2px solid rgba(124, 242, 198, 0.5);
+  background: rgba(124, 242, 198, 0.25);
+  border: 2px solid #7cf2c6;
   color: #7cf2c6;
-  box-shadow: 0 4px 20px rgba(124, 242, 198, 0.2);
+  box-shadow: 0 8px 32px rgba(124, 242, 198, 0.3);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form-message--success strong {
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .form-message--error {
