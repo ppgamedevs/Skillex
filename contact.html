@@ -354,7 +354,7 @@
             throw new Error(result.error || 'Failed to send message');
           }
         } catch (error) {
-          console.error('EmailJS Error:', error);
+          console.error('Contact form error:', error);
           formMessage.textContent = 'There was an error submitting the form. Please try again or email us directly at contact@skillexgames.com';
           formMessage.className = 'form-message form-message--error';
         } finally {
