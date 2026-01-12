@@ -70,6 +70,12 @@ body {
   margin-bottom: 8px;
 }
 
+.header-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
 .nav-links {
   display: flex;
   gap: 22px;
@@ -444,9 +450,22 @@ body {
     gap: 12px;
   }
 
-  .nav-links {
+  .top-bar .brand {
+    width: 100%;
+    text-align: center;
+  }
+
+  .header-nav-group {
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    align-items: center;
   }
 
   .hero {
