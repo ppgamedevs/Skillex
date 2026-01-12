@@ -1,0 +1,18 @@
+{
+  "name": "Skillex Games - Premium Slot Games",
+  "short_name": "Skillex",
+  "description": "Distinct, high-polish slot games with demo-ready web and mobile experiences",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#13223a",
+  "theme_color": "#13223a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/images/skillex-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -30,6 +30,23 @@ body {
   background: rgba(122, 242, 198, 0.18);
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--accent-strong);
+  color: #0a0f18;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: 700;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 .top-bar {
   position: sticky;
   top: 0;
@@ -48,6 +65,9 @@ body {
   font-size: 20px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
 }
 
 .logo-brand {

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://skillexgames.com/sitemap.xml
+
+# Disallow admin or private areas if any exist in future
+# Disallow: /admin/
+# Disallow: /private/
