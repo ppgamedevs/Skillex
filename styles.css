@@ -50,6 +50,26 @@ body {
   text-transform: uppercase;
 }
 
+.logo-brand {
+  font-size: 0;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.top-bar .logo-img {
+  height: 35px;
+}
+
+.footer__brand .logo-img {
+  height: 40px;
+  margin-bottom: 8px;
+}
+
 .nav-links {
   display: flex;
   gap: 22px;

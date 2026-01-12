@@ -1,0 +1,26 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <style>
+      .logo-text {
+        font-family: Arial, sans-serif;
+        font-size: 120px;
+        font-weight: bold;
+        fill: white;
+        stroke: black;
+        stroke-width: 8;
+        text-anchor: middle;
+      }
+      .logo-accent {
+        fill: #f6c64f;
+        stroke: #c41e3a;
+        stroke-width: 6;
+      }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="none"/>
+  
+  <!-- Main text with styling -->
+  <text x="400" y="240" class="logo-text" class="logo-accent">SKILLEX</text>
+</svg>
