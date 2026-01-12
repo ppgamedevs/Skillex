@@ -617,31 +617,52 @@ body {
 }
 
 .form-message {
-  padding: 16px 20px;
+  padding: 20px 24px;
   border-radius: 12px;
   font-weight: 500;
   text-align: center;
-  margin-top: 8px;
-  min-height: 52px;
+  margin-top: 16px;
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1.6;
+  animation: fadeIn 0.3s ease-in;
 }
 
 .form-message:empty {
   display: none;
 }
 
+.form-message strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
 .form-message--success {
-  background: rgba(124, 242, 198, 0.15);
-  border: 1px solid rgba(124, 242, 198, 0.3);
+  background: rgba(124, 242, 198, 0.2);
+  border: 2px solid rgba(124, 242, 198, 0.5);
   color: #7cf2c6;
+  box-shadow: 0 4px 20px rgba(124, 242, 198, 0.2);
 }
 
 .form-message--error {
-  background: rgba(255, 107, 107, 0.15);
-  border: 1px solid rgba(255, 107, 107, 0.3);
+  background: rgba(255, 107, 107, 0.2);
+  border: 2px solid rgba(255, 107, 107, 0.5);
   color: #ff6b6b;
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 720px) {

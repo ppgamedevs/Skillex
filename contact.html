@@ -341,13 +341,16 @@
           );
           
           if (response.status === 200) {
-            formMessage.textContent = 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
+            formMessage.innerHTML = '<strong>✓ Message sent successfully!</strong><br>Thank you for contacting us. We\'ll get back to you soon.';
             formMessage.className = 'form-message form-message--success';
+            formMessage.setAttribute('aria-live', 'polite');
             form.reset();
             // Reset validation states
             [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
               input.setAttribute('aria-invalid', 'false');
             });
+            // Scroll to message to ensure visibility
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           } else {
             throw new Error('Email service returned an error');
           }
@@ -360,7 +363,10 @@
           submitBtn.disabled = false;
           btnText.style.display = 'inline';
           btnLoading.style.display = 'none';
-          formMessage.focus();
+          // Ensure message is visible
+          if (formMessage.textContent) {
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
         }
       });
     })();
