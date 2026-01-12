@@ -106,12 +106,14 @@ app.post('/api/contact', async (req, res) => {
 
     // Send email via Resend
     const data = await resend.emails.send({
-      from: 'noreply@skillex.games',
+      from: 'Skillex Games <onboarding@resend.dev>',
       to: 'contact@skillexgames.com',
       replyTo: email,
       subject: `New Contact Form: ${subject}`,
       html: htmlContent
     });
+
+    console.log('Resend response:', data);
 
     if (data.error) {
       console.error('Resend error:', data.error);
@@ -158,7 +160,7 @@ app.post('/api/contact', async (req, res) => {
 
     // Send confirmation to user (fire and forget)
     resend.emails.send({
-      from: 'noreply@skillex.games',
+      from: 'Skillex Games <onboarding@resend.dev>',
       to: email,
       subject: 'We received your message - Skillex Games',
       html: confirmationHtml
