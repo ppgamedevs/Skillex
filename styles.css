@@ -62,11 +62,11 @@ body {
 }
 
 .top-bar .logo-img {
-  height: 55px;
+  height: 110px;
 }
 
 .footer__brand .logo-img {
-  height: 55px;
+  height: 110px;
   margin-bottom: 8px;
 }
 
@@ -272,7 +272,7 @@ body {
 
 .game-card {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
