@@ -62,11 +62,11 @@ body {
 }
 
 .top-bar .logo-img {
-  height: 35px;
+  height: 55px;
 }
 
 .footer__brand .logo-img {
-  height: 40px;
+  height: 55px;
   margin-bottom: 8px;
 }
 
@@ -284,9 +284,9 @@ body {
 
 .game-image {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 12;
   overflow: hidden;
-  background: #0b1626;
+  background: transparent;
 }
 
 .game-image::after {
