@@ -88,7 +88,7 @@
       </div>
 
       <div class="contact-form-container">
-        <form id="contact-form" class="contact-form" method="POST" action="javascript:void(0);" novalidate>
+        <form id="contact-form" class="contact-form" novalidate>
           <div class="form-group">
             <label for="name">Name <span class="required">*</span></label>
             <input 
@@ -183,32 +183,11 @@
     <div class="footer__note">© 2026 Skillex. All rights reserved.</div>
   </footer>
 
-  <!-- EmailJS SDK -->
-  <!-- 
-    SETUP INSTRUCTIONS:
-    1. Sign up for a free account at https://www.emailjs.com/
-    2. Create an email service (Gmail, Outlook, etc.) and connect it
-    3. Create an email template with these variables:
-       - {{from_name}}
-       - {{from_email}}
-       - {{company}}
-       - {{subject}}
-       - {{message}}
-    4. Get your Public Key from EmailJS dashboard
-    5. Get your Service ID and Template ID
-    6. Replace the placeholders below:
-       - YOUR_PUBLIC_KEY: Your EmailJS public key
-       - YOUR_SERVICE_ID: Your EmailJS service ID
-       - YOUR_TEMPLATE_ID: Your EmailJS template ID
-    7. Configure the template to send emails to: contact@skillexgames.com
-  -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- Resend Email Service -->
+  <script src="https://cdn.jsdelivr.net/npm/resend@2.0.0/dist/index.global.js"></script>
   <script>
-    // Initialize EmailJS
-    // TODO: Replace 'YOUR_PUBLIC_KEY' with your EmailJS public key from dashboard
-    (function() {
-      emailjs.init('YOUR_PUBLIC_KEY');
-    })();
+    // Initialize Resend with API key
+    const RESEND_API_KEY = 're_FQzMdGHx_Fp3ohnGy8ny3i9V7VAuEdbxZ';
 
     // Form validation and submission
     (function() {
@@ -322,25 +301,36 @@
         formMessage.textContent = '';
         
         try {
-          // Prepare email template parameters
-          const templateParams = {
-            from_name: nameInput.value.trim(),
-            from_email: emailInput.value.trim(),
-            company: document.getElementById('company').value.trim() || 'Not provided',
-            subject: subjectInput.value.trim(),
-            message: messageInput.value.trim(),
-            to_email: 'contact@skillexgames.com'
-          };
+          // Prepare email content
+          const emailContent = `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${nameInput.value.trim()}</p>
+            <p><strong>Email:</strong> ${emailInput.value.trim()}</p>
+            <p><strong>Company:</strong> ${document.getElementById('company').value.trim() || 'Not provided'}</p>
+            <p><strong>Subject:</strong> ${subjectInput.value.trim()}</p>
+            <p><strong>Message:</strong></p>
+            <p>${messageInput.value.trim().replace(/\n/g, '<br>')}</p>
+          `;
           
-          // Send email using EmailJS
-          // TODO: Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your EmailJS service and template IDs
-          const response = await emailjs.send(
-            'YOUR_SERVICE_ID',  // TODO: Replace with your EmailJS service ID
-            'YOUR_TEMPLATE_ID', // TODO: Replace with your EmailJS template ID
-            templateParams
-          );
+          // Send email using Resend API
+          const response = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${RESEND_API_KEY}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              from: 'noreply@skillex.games',
+              to: 'contact@skillexgames.com',
+              subject: `New Contact: ${subjectInput.value.trim()}`,
+              html: emailContent,
+              replyTo: emailInput.value.trim()
+            })
+          });
           
-          if (response.status === 200) {
+          const result = await response.json();
+          
+          if (response.ok && result.id) {
             // Show success message with animation
             formMessage.innerHTML = '<strong>✓ Message sent successfully!</strong><br>Thank you for contacting us. We\'ll get back to you as soon as possible.';
             formMessage.className = 'form-message form-message--success';
@@ -361,7 +351,7 @@
               formMessage.style.opacity = '0.5';
             }, 5000);
           } else {
-            throw new Error('Email service returned an error');
+            throw new Error(result.message || 'Email service returned an error');
           }
         } catch (error) {
           console.error('EmailJS Error:', error);
