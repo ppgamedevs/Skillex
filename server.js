@@ -105,9 +105,14 @@ app.post('/api/contact', async (req, res) => {
     `;
 
     // Send email via Resend
+    // Note: For testing, you can only send to your verified email (fakriddin@gmail.com)
+    // To send to contact@skillexgames.com, verify the domain at resend.com/domains
+    const recipientEmail = process.env.RESEND_TEST_EMAIL || 'contact@skillexgames.com';
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+    
     const data = await resend.emails.send({
-      from: 'Skillex Games <onboarding@resend.dev>',
-      to: 'contact@skillexgames.com',
+      from: `Skillex Games <${fromEmail}>`,
+      to: recipientEmail,
       replyTo: email,
       subject: `New Contact Form: ${subject}`,
       html: htmlContent
@@ -117,9 +122,18 @@ app.post('/api/contact', async (req, res) => {
 
     if (data.error) {
       console.error('Resend error:', data.error);
+      
+      // Check if it's a domain verification error
+      if (data.error.statusCode === 403 && data.error.message.includes('verify a domain')) {
+        return res.status(500).json({
+          success: false,
+          error: 'Email service configuration error. Please verify your domain at resend.com/domains or set RESEND_TEST_EMAIL environment variable for testing.'
+        });
+      }
+      
       return res.status(500).json({
         success: false,
-        error: 'Failed to send email. Please try again later.'
+        error: data.error.message || 'Failed to send email. Please try again later.'
       });
     }
 
