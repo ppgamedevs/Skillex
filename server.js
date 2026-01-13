@@ -12,7 +12,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY || 're_FQzMdGHx_Fp3ohnGy8ny3i9V7VAuEdbxZ');
+if (!process.env.RESEND_API_KEY) {
+  console.error('❌ RESEND_API_KEY environment variable is not set!');
+  process.exit(1);
+}
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Middleware
 app.use(cors());

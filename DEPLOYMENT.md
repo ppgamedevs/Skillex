@@ -13,7 +13,7 @@
 
 3. **Add Environment Variable:**
    - In Vercel dashboard, go to: Settings → Environment Variables
-   - Add: `RESEND_API_KEY` = `re_FQzMdGHx_Fp3ohnGy8ny3i9V7VAuEdbxZ`
+   - Add: `RESEND_API_KEY` = `your_new_resend_api_key_here`
    - Save and redeploy
 
 4. **Verify Email Domain (Optional but Recommended):**
