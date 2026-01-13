@@ -108,7 +108,7 @@ app.post('/api/contact', async (req, res) => {
     // Note: For testing, you can only send to your verified email (fakriddin@gmail.com)
     // To send to contact@skillexgames.com, verify the domain at resend.com/domains
     const recipientEmail = process.env.RESEND_TEST_EMAIL || 'contact@skillexgames.com';
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@skillexgames.com';
     
     const data = await resend.emails.send({
       from: `Skillex Games <${fromEmail}>`,
@@ -174,7 +174,7 @@ app.post('/api/contact', async (req, res) => {
 
     // Send confirmation to user (fire and forget)
     resend.emails.send({
-      from: 'Skillex Games <onboarding@resend.dev>',
+      from: `Skillex Games <${fromEmail}>`,
       to: email,
       subject: 'We received your message - Skillex Games',
       html: confirmationHtml
